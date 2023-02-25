@@ -1,11 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar, Container, Nav } from 'react-bootstrap'
+import {Navbar, Container, Nav, Button } from 'react-bootstrap'
 import data from './data';
 import { useState } from 'react';
 import Card from './page/Card';
 import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './page/detail';
+import axios from 'axios'
 
 export interface Shoesdata {
   id: number;
@@ -16,7 +17,8 @@ export interface Shoesdata {
 
 function App() {
 
-  let [shoes] = useState<Shoesdata[]>(data)
+  let [shoes, set_shoes] = useState<Shoesdata[]>(data)
+  let [button, set_button] = useState<number>(2)
   let navigate = useNavigate();
 
   return (
@@ -42,6 +44,15 @@ function App() {
 
             </div>
             <Card shoes={shoes}></Card>
+            <Button onClick={()=>{
+              axios.get('https://codingapple1.github.io/shop/data'+button+'.json').then((dataa)=>{
+                set_shoes([...shoes,...dataa.data])
+              })
+              .catch(()=>{
+                console.log('실패함')
+              });
+              set_button(button+1)
+            }}>더 보기</Button>
           </div>
         }>
         </Route>
