@@ -15,3 +15,12 @@
   background-size : cover;
   background-position : center;
 }
+
+.start {
+  opacity : 0;
+}
+.end {
+  transition: opacity 0.9s;
+  opacity : 1;
+  
+}
