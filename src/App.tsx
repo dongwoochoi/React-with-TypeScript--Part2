@@ -7,6 +7,7 @@ import Card from './page/Card';
 import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './page/detail';
 import axios from 'axios'
+import Cart from './page/Cart';
 
 export interface Shoesdata {
   id: number;
@@ -57,6 +58,7 @@ function App() {
         }>
         </Route>
         <Route path="/detail/:id" element={<Detail shoes={shoes}></Detail>}></Route>
+        <Route path="/cart" element={<Cart></Cart>}></Route>
         <Route path="*" element={ <div>404</div> } />
         <Route path="/event" element={ <Event></Event> }>
           <Route path="one" element={ <div><h3>첫 주문시 양배추 서비스</h3></div> } />
